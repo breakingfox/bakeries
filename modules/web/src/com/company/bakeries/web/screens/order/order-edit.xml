@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://orderEdit.caption"
+        focusComponent="form"
+        messagesPack="com.company.bakeries.web.screens.order">
+    <data>
+        <instance id="orderDc"
+                  class="com.company.bakeries.entity.Order">
+            <view extends="_local">
+                <property name="readyMeals" view="_minimal"/>
+                <property name="bakery" view="bakery-view"/>
+            </view>
+            <loader/>
+            <collection id="mealsDc" property="readyMeals"/>
+
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="orderDc">
+            <column width="350px">
+                <textField id="numberField" property="number"/>
+                <checkBox id="isReadyToCookField" property="isReadyToCook" editable="false"/>
+                <checkBox id="isReadyField" property="isReady" editable="false"/>
+                <pickerField id="bakeryField" property="bakery">
+                    <actions>
+                        <action id="lookup" type="picker_lookup"/>
+                        <action id="clear" type="picker_clear"/>
+                    </actions>
+                </pickerField>
+            </column>
+        </form>
+        <groupBox id="mealsBox" caption="msg://com.company.bakeries.entity/Order.meals">
+            <table id="mealsTable" dataContainer="mealsDc" width="100%" height="200px">
+                <actions>
+                    <action id="add" type="add"/>
+                    <action id="exclude" type="exclude"/>
+                </actions>
+                <columns>
+                    <column id="name"/>
+                </columns>
+                <buttonsPanel>
+                    <button action="mealsTable.add"/>
+                    <button action="mealsTable.exclude"/>
+                </buttonsPanel>
+            </table>
+        </groupBox>
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

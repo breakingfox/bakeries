@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://bakeryRun.caption"
+        focusComponent="form"
+        messagesPack="com.company.bakeries.web.screens.bakery">
+    <data>
+        <instance id="bakeryDc"
+                  class="com.company.bakeries.entity.Bakery">
+            <view extends="bakery-view">
+                <property name="components" view="_minimal">
+                    <property name="amount"/>
+                </property>
+            </view>
+            <loader/>
+            <collection id="componentsDc" property="components"/>
+            <collection id="readyMealsDc" property="readyMeals"/>
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="bakeryDc">
+            <column width="350px">
+                <textField id="nameField" property="name"/>
+            </column>
+        </form>
+        <button id="makeOrderButton"
+                caption="&#1057;&#1076;&#1077;&#1083;&#1072;&#1090;&#1100; &#1079;&#1072;&#1082;&#1072;&#1079;"/>
+        <button id="cookMealButton" caption="Приготовить блюдо" enable="false"/>
+        <groupBox id="componentsBox" caption="msg://com.company.bakeries.entity/Bakery.readyMeals">
+            <table id="readyMealsTable" dataContainer="readyMealsDc" width="100%" height="200px">
+                <actions>
+                    <action id="add" type="add"/>
+                    <action id="exclude" type="exclude"/>
+                </actions>
+                <columns>
+                    <column id="name"/>
+                    <column id="amount"/>
+                </columns>
+                <buttonsPanel>
+                    <button action="readyMealsTable.add"/>
+                    <button action="readyMealsTable.exclude"/>
+                </buttonsPanel>
+            </table>
+            <table id="componentsTable" dataContainer="componentsDc" width="100%" height="200px">
+                <actions>
+                    <action id="add" type="add"/>
+                    <action id="exclude" type="exclude"/>
+                </actions>
+                <columns>
+                    <column id="name"/>
+                    <column id="amount"/>
+                </columns>
+                <buttonsPanel>
+                    <button action="componentsTable.add"/>
+                    <button action="componentsTable.exclude"/>
+                </buttonsPanel>
+            </table>
+
+        </groupBox>
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose" caption="&#1054;&#1082;"/>
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

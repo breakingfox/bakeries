@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+    <persistence-unit name="bakeries" transaction-type="RESOURCE_LOCAL">
+
+        <class>com.company.bakeries.entity.Component</class>
+        <class>com.company.bakeries.entity.TechCard</class>
+        <class>com.company.bakeries.entity.ReadyMeal</class>
+        <class>com.company.bakeries.entity.Bakery</class>
+        <class>com.company.bakeries.entity.Order</class>
+    </persistence-unit>
+</persistence>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<menu-config xmlns="http://schemas.haulmont.com/cuba/menu.xsd">
+    <menu id="application-bakeries" insertBefore="administration" caption="mainMsg://menu_config.application-bakeries">
+        <item screen="bakeries_Component.browse" caption="mainMsg://menu_config.bakeries_Component.browse"/>
+        <item screen="bakeries_TechCard.browse" caption="mainMsg://menu_config.bakeries_TechCard.browse"/>
+        <item screen="bakeries_Bakery.browse" caption="mainMsg://menu_config.bakeries_Bakery.browse"/>
+        <item screen="bakeries_ReadyMeal.browse" caption="mainMsg://menu_config.bakeries_ReadyMeal.browse"/>
+        <item screen="bakeries_Order.browse" caption="mainMsg://menu_config.bakeries_Order.browse"/>
+    </menu>
+</menu-config>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<views xmlns="http://schemas.haulmont.com/cuba/view.xsd">
+
+    <view entity="bakeries_TechCard" name="techCard-view" extends="_local">
+        <property name="components" view="_minimal">
+            <property name="amount"/>
+        </property>
+        <property name="bakery" view="_minimal"/>
+    </view>
+    <view entity="bakeries_Bakery" name="bakery-view" extends="_local">
+        <property name="techCards" view="_minimal">
+            <property name="components" view="_minimal">
+                <property name="amount"/>
+            </property>
+        </property>
+        <property name="readyMeals" view="_minimal">
+            <property name="amount"/>
+        </property>
+        <property name="components" view="_minimal">
+            <property name="amount"/>
+        </property>
+    </view>
+    <view entity="bakeries_Component" name="component-view" extends="_local">
+        <property name="techCards" view="_minimal"/>
+        <property name="bakery" view="_minimal"/>
+    </view>
+    <view entity="bakeries_ReadyMeal" name="readyMeal-view" extends="_local">
+        <property name="bakery" view="_minimal">
+            <property name="techCards" view="_minimal">
+                <property name="components" view="_minimal">
+                    <property name="amount"/>
+                </property>
+            </property>
+            <property name="components" view="_minimal">
+                <property name="amount"/>
+            </property>
+        </property>
+    </view>
+</views>

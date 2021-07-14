@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://readyMealCook.caption"
+        focusComponent="form"
+        messagesPack="com.company.bakeries.web.screens.readymeal">
+    <data>
+        <instance id="readyMealDc"
+                  class="com.company.bakeries.entity.ReadyMeal">
+            <view extends="readyMeal-view"/>
+            <loader/>
+        </instance>
+
+
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <facets>
+        <messageDialog id="outOfComponentsMessage" closeOnClickOutside="true"
+                       caption="&#1042;&#1085;&#1080;&#1084;&#1072;&#1085;&#1080;&#1077;"
+                       message="&#1053;&#1077;&#1076;&#1086;&#1089;&#1090;&#1072;&#1090;&#1086;&#1095;&#1085;&#1086; &#1080;&#1085;&#1075;&#1088;&#1077;&#1076;&#1080;&#1077;&#1085;&#1090;&#1086;&#1074;, &#1080;&#1079;&#1084;&#1077;&#1085;&#1080;&#1090;&#1077; &#1082;&#1086;&#1083;&#1080;&#1095;&#1077;&#1089;&#1090;&#1074;&#1086; &#1073;&#1083;&#1102;&#1076;"/>
+    </facets>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="readyMealDc">
+            <column width="350px">
+                <textField id="nameField" property="name"/>
+                <textField id="amountField" property="amount"/>
+                <textField id="amountTextFieldProduct"
+                           caption="&#1050;&#1086;&#1083;&#1080;&#1095;&#1077;&#1089;&#1090;&#1074;&#1086;"
+                           datatype="int" conversionErrorMessage="Вводите целое число">
+                    <validators>
+                        <positiveOrZero message="Введите натуральное число"></positiveOrZero>
+                    </validators>
+                </textField>
+
+                <!--     <pickerField id="bakeryField" property="bakery">
+                         <actions>
+                             <action id="lookup" type="picker_lookup"/>
+                             <action id="clear" type="picker_clear"/>
+                         </actions>
+                     </pickerField>
+                     -->
+                <textArea
+                        id="componentsTextField"
+                        editable="false"
+                        caption="&#1050;&#1086;&#1084;&#1087;&#1086;&#1085;&#1077;&#1085;&#1090;&#1099; &#1080; &#1080;&#1093; &#1082;&#1086;&#1083;&#1080;&#1095;&#1077;&#1089;&#1090;&#1074;&#1086;"/>
+                <!--
+                  <groupBox id="componentsBox" caption="msg://com.company.bakeries.entity/TechCard.components">
+                      <table id="componentsTable" dataContainer="" width="100%" height="200px">
+                          <actions>
+                              <action id="add" type="add"/>
+                              <action id="exclude" type="exclude"/>
+                          </actions>
+                          <columns>
+                              <column id="name"/>
+                              <column id="amount"/>
+                          </columns>
+                         <buttonsPanel>
+                                 <button action="componentsTable.add"/>
+                                 <button action="componentsTable.exclude"/>
+                          </buttonsPanel>
+                      </table>
+                  </groupBox>
+              -->
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button invoke="cookMethod"
+                    caption="&#1055;&#1088;&#1080;&#1075;&#1086;&#1090;&#1086;&#1074;&#1080;&#1090;&#1100; &#1073;&#1083;&#1102;&#1076;&#1086;"/>
+
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

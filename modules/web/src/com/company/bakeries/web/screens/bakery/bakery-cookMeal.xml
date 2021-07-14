@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://bakeryCookMeal.caption"
+        focusComponent="form"
+        messagesPack="com.company.bakeries.web.screens.bakery">
+    <data>
+        <instance id="bakeryDc"
+                  class="com.company.bakeries.entity.Bakery">
+            <view extends="bakery-view"/>
+            <loader/>
+
+            <collection id="componentsDc" property="components"/>
+            <collection id="techCardsDc" property="techCards"/>
+            <collection id="readyMealsDc" property="readyMeals"/>
+        </instance>
+        <collection id="componentsDC1" class="com.company.bakeries.entity.Component"
+                    view="component-view">
+            <loader id="ComponentsDl">
+                <query>
+                    <![CDATA[select e from bakeries_Component e where e.techCards=:name]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="readyMealsDc">
+            <column width="350px">
+                <textField id="nameField" property="name"/>
+                <textField id="amountTextFieldProduct"
+                           caption="&#1050;&#1086;&#1083;&#1080;&#1095;&#1077;&#1089;&#1090;&#1074;&#1086;"
+                           datatype="int" conversionErrorMessage="Вводите целое число">
+                    <validators>
+                        <positiveOrZero message="Введите натуральное число"></positiveOrZero>
+                    </validators>
+                </textField>
+            </column>
+
+        </form>
+        <groupBox id="componentsBox" caption="msg://com.company.bakeries.entity/TechCard.components">
+            <table id="componentsTable" dataContainer="componentsDC1" width="100%" height="200px">
+                <actions>
+                    <action id="add" type="add"/>
+                    <action id="exclude" type="exclude"/>
+                </actions>
+                <columns>
+                    <column id="name"/>
+                    <column id="amount"/>
+                </columns>
+                <!--   <buttonsPanel>
+                       <button action="componentsTable.add"/>
+                       <button action="componentsTable.exclude"/>
+                </buttonsPanel>-->
+            </table>
+        </groupBox>
+        <hbox id="editActions" spacing="true">
+            <button
+                    id="cookMealButton"
+                    caption="&#1055;&#1088;&#1080;&#1075;&#1086;&#1090;&#1086;&#1074;&#1080;&#1090;&#1100; &#1073;&#1083;&#1102;&#1076;&#1086;"/>
+
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

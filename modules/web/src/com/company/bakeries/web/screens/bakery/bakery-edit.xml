@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://bakeryEdit.caption"
+        focusComponent="form"
+        messagesPack="com.company.bakeries.web.screens.bakery">
+    <data>
+        <instance id="bakeryDc"
+                  class="com.company.bakeries.entity.Bakery">
+            <view extends="_local">
+                <property name="techCards" view="_minimal"/>
+                <property name="readyMeals" view="_minimal">
+                    <property name="amount"/>
+                </property>
+                <property name="components" view="_minimal">
+                    <property name="amount"/>
+                </property>
+            </view>
+            <loader/>
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="bakeryDc">
+            <column width="350px">
+                <textField id="nameField" property="name"/>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose" caption="&#1054;&#1082;"/>
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://techCardBrowse.caption"
+        focusComponent="techCardsTable"
+        messagesPack="com.company.bakeries.web.screens.techcard">
+    <data readOnly="true">
+        <collection id="techCardsDc"
+                    class="com.company.bakeries.entity.TechCard">
+            <view extends="_local">
+                <property name="components" view="_minimal">
+                    <property name="amount"/>
+                </property>
+                <property name="bakery" view="_minimal"/>
+            </view>
+            <loader id="techCardsDl">
+                <query>
+                    <![CDATA[select e from bakeries_TechCard e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="techCardsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="techCardsTable"
+                dataLoader="techCardsDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="techCardsTable"
+                    width="100%"
+                    dataContainer="techCardsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="name"/>
+                <column id="bakery"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="techCardsTable.create"/>
+                <button id="editBtn" action="techCardsTable.edit"/>
+                <button id="removeBtn" action="techCardsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

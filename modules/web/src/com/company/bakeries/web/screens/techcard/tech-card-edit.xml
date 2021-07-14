@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://techCardEdit.caption"
+        focusComponent="form"
+        messagesPack="com.company.bakeries.web.screens.techcard">
+    <data>
+        <instance id="techCardDc"
+                  class="com.company.bakeries.entity.TechCard">
+            <view extends="_local">
+                <property name="components" view="_minimal">
+                    <property name="amount"/>
+                </property>
+                <property name="bakery" view="_minimal"/>
+            </view>
+            <loader/>
+            <collection id="componentsDc" property="components"/>
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="techCardDc">
+            <column width="350px">
+                <textField id="nameField" property="name"/>
+                <pickerField id="bakeryField" property="bakery">
+                    <actions>
+                        <action id="lookup" type="picker_lookup"/>
+                        <action id="clear" type="picker_clear"/>
+                    </actions>
+                </pickerField>
+            </column>
+        </form>
+        <groupBox id="componentsBox" caption="msg://com.company.bakeries.entity/TechCard.components">
+            <table id="componentsTable" dataContainer="componentsDc" width="100%" height="200px">
+                <actions>
+                    <action id="add" type="add"/>
+                    <action id="exclude" type="exclude"/>
+                </actions>
+                <columns>
+                    <column id="name"/>
+                    <column id="amount"/>
+                </columns>
+                <buttonsPanel>
+                    <button action="componentsTable.add"/>
+                    <button action="componentsTable.exclude"/>
+                </buttonsPanel>
+            </table>
+        </groupBox>
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

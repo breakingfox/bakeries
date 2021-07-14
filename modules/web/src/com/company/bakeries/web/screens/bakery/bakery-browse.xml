@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://bakeryBrowse.caption"
+        focusComponent="bakeriesTable"
+        messagesPack="com.company.bakeries.web.screens.bakery">
+    <data readOnly="true">
+        <collection id="bakeriesDc"
+                    class="com.company.bakeries.entity.Bakery">
+            <view extends="_local">
+                <property name="techCards" view="_minimal"/>
+                <property name="readyMeals" view="_minimal">
+                    <property name="amount"/>
+                </property>
+                <property name="components" view="_minimal">
+                    <property name="amount"/>
+                </property>
+            </view>
+            <loader id="bakeriesDl">
+                <query>
+                    <![CDATA[select e from bakeries_Bakery e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="bakeriesTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="bakeriesTable"
+                dataLoader="bakeriesDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="bakeriesTable"
+                    width="100%"
+                    dataContainer="bakeriesDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="name"/>
+            </columns>
+            <rowsCount/>
+
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true"
+                          caption="&#1056;&#1077;&#1076;&#1072;&#1082;&#1090;&#1080;&#1088;&#1086;&#1074;&#1072;&#1090;&#1100;">
+                <button id="bakeryRunButton"
+                        caption="&#1059;&#1087;&#1088;&#1072;&#1074;&#1083;&#1077;&#1085;&#1080;&#1077; &#1087;&#1077;&#1082;&#1072;&#1088;&#1085;&#1077;&#1081;"
+                        enable="false"/>
+                <button id="createBtn" action="bakeriesTable.create"
+                        caption="&#1057;&#1086;&#1079;&#1076;&#1072;&#1090;&#1100;"/>
+                <button id="editBtn" action="bakeriesTable.edit"/>
+                <button id="removeBtn" action="bakeriesTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>
