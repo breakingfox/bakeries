@@ -16,7 +16,7 @@ public class TechCard extends StandardEntity {
     private static final long serialVersionUID = 7042110238342420109L;
 
     @NotNull
-    @Column(name = "NAME", nullable = false, unique = true)
+    @Column(name = "NAME", nullable = false)
     private String name;
 
     @JoinTable(name = "BAKERIES_TECH_CARD_COMPONENT_LINK",

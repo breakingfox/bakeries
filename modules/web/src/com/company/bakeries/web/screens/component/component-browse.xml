@@ -7,7 +7,9 @@
     <data readOnly="true">
         <collection id="componentsDc"
                     class="com.company.bakeries.entity.Component">
-            <view extends="_local"/>
+            <view extends="_local">
+                <property name="bakery" view="_minimal"/>
+            </view>
             <loader id="componentsDl">
                 <query>
                     <![CDATA[select e from bakeries_Component e]]>
@@ -35,6 +37,7 @@
             <columns>
                 <column id="name"/>
                 <column id="amount"/>
+                <column id="bakery"/>
             </columns>
             <rowsCount/>
             <buttonsPanel id="buttonsPanel"

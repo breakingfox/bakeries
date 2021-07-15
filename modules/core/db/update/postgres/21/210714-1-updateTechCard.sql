@@ -1,0 +1,1 @@
+drop index IDX_BAKERIES_TECH_CARD_UK_NAME ;

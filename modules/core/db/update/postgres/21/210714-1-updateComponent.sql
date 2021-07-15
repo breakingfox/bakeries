@@ -1,0 +1,1 @@
+drop index IDX_BAKERIES_COMPONENT_UK_NAME ;

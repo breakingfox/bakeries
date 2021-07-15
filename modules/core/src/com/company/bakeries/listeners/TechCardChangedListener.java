@@ -24,14 +24,14 @@ public class TechCardChangedListener {
     public void afterCommit(EntityChangedEvent<TechCard, UUID> event) {
         TechCard techCard = dataManager.load(event.getEntityId()).view("techCard-view").one();
 
-        if (event.getType() == EntityChangedEvent.Type.CREATED) {
-            ReadyMeal readyMeal = dataManager.create(ReadyMeal.class);
-            readyMeal.setName(techCard.getName());
-            readyMeal.setBakery(techCard.getBakery());
-            readyMeal.setAmount(0);
-            log.info(readyMeal.getName() + " снова дебажим");
-            dataManager.commit(readyMeal);
-        }
+//        if (event.getType() == EntityChangedEvent.Type.CREATED) {
+//            ReadyMeal readyMeal = dataManager.create(ReadyMeal.class);
+//            readyMeal.setName(techCard.getName());
+//            readyMeal.setBakery(techCard.getBakery());
+//            readyMeal.setAmount(0);
+//            log.info(readyMeal.getName() + " снова дебажим");
+//            dataManager.commit(readyMeal);
+//        }
         if (event.getType() == EntityChangedEvent.Type.UPDATED) {
             log.info(event.getChanges().getOldValue("name"));
             ReadyMeal readyMeal = dataManager.load(ReadyMeal.class).query("select e from bakeries_ReadyMeal e where e.name=:name").parameter("name", event.getChanges().getOldValue("name")).view("readyMeal-view").one();

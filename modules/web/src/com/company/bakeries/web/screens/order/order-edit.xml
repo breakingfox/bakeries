@@ -21,8 +21,8 @@
         <form id="form" dataContainer="orderDc">
             <column width="350px">
                 <textField id="numberField" property="number"/>
-                <checkBox id="isReadyToCookField" property="isReadyToCook" editable="false"/>
-                <checkBox id="isReadyField" property="isReady" editable="false"/>
+                <checkBox id="isReadyToCookField" property="isReadyToCook"/>
+                <checkBox id="isReadyField" property="isReady"/>
                 <pickerField id="bakeryField" property="bakery">
                     <actions>
                         <action id="lookup" type="picker_lookup"/>
@@ -31,7 +31,7 @@
                 </pickerField>
             </column>
         </form>
-        <groupBox id="mealsBox" caption="msg://com.company.bakeries.entity/Order.meals">
+        <groupBox id="mealsBox" caption="msg://com.company.bakeries.entity/Order.readyMeals">
             <table id="mealsTable" dataContainer="mealsDc" width="100%" height="200px">
                 <actions>
                     <action id="add" type="add"/>

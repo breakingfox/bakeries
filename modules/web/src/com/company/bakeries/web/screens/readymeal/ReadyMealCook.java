@@ -11,6 +11,7 @@ import com.haulmont.cuba.gui.components.TextArea;
 import com.haulmont.cuba.gui.components.TextField;
 import com.haulmont.cuba.gui.model.CollectionContainer;
 import com.haulmont.cuba.gui.model.CollectionLoader;
+import com.haulmont.cuba.gui.model.InstanceContainer;
 import com.haulmont.cuba.gui.screen.*;
 import com.company.bakeries.entity.ReadyMeal;
 
@@ -33,6 +34,8 @@ public class ReadyMealCook extends StandardEditor<ReadyMeal> {
     private TextField<Integer> amountTextFieldProduct;
     @Inject
     private MessageDialogFacet outOfComponentsMessage;
+    @Inject
+    private InstanceContainer<ReadyMeal> readyMealDc;
 
     @Subscribe
     public void onBeforeShow(BeforeShowEvent event) {
@@ -52,11 +55,10 @@ public class ReadyMealCook extends StandardEditor<ReadyMeal> {
         if (readyMealService.isPossibleToCook(this.getEditedEntity().getBakery(), techCard.getComponents(), Integer.valueOf(amountTextFieldProduct.getRawValue()))) {
             readyMealService.cookProduct(this.getEditedEntity(), techCard, Integer.valueOf(amountTextFieldProduct.getRawValue()));
             close(StandardOutcome.CLOSE);
-
-
         } else {
             outOfComponentsMessage.show();
         }
+
     }
 
 }

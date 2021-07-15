@@ -15,7 +15,7 @@ public class Component extends StandardEntity {
     private static final long serialVersionUID = -5274469917412060686L;
 
     @NotNull
-    @Column(name = "NAME", nullable = false, unique = true)
+    @Column(name = "NAME", nullable = false)
     private String name;
 
     @NotNull

@@ -41,8 +41,10 @@ public class BakeryRun extends StandardEditor<Bakery> {
 
     @Subscribe
     public void onBeforeShow(BeforeShowEvent event) {
-        readyMealsTable.repaint();
-        componentsTable.repaint();
+//        readyMealsTable.repaint();
+//        componentsTable.repaint();
+//        readyMealsTable.refresh();
+
     }
 
     @Subscribe("makeOrderButton")
@@ -58,10 +60,15 @@ public class BakeryRun extends StandardEditor<Bakery> {
     public void onReadyMealsDcItemChange(InstanceContainer.ItemChangeEvent<ReadyMeal> event) {
 //        readyMealsTable.repaint();
 //        componentsTable.repaint();
+//        readyMealsTable.refresh();
+
     }
 
     @Subscribe("readyMealsTable")
     public void onReadyMealsTableSelection(Table.SelectionEvent<ReadyMeal> event) {
         cookMealButton.setEnabled(true);
+//        readyMealsTable.repaint();
+//        readyMealsTable.refresh();
+//        componentsTable.repaint();
     }
 }
