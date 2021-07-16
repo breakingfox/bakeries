@@ -25,9 +25,7 @@ public class ReadyMealServiceBean implements ReadyMealService {
     public boolean isPossibleToCook(Bakery bakery, Collection<Component> components, int amountOfProduct) {
         boolean isReadyToCook = true;
         List<Component> componentCollection = bakery.getComponents();
-        //TODO переделать для проверки ингредиентов в пекарне
         List<String> names = components.stream().map(Component::getName).collect(Collectors.toList());
-
         List<String> nameList = componentCollection.stream().map(Component::getName).collect(Collectors.toList());
         for (String x : names) {
             if (!nameList.contains(x)) {

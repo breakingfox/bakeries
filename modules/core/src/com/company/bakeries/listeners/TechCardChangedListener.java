@@ -11,13 +11,14 @@ import org.springframework.transaction.event.TransactionPhase;
 import org.springframework.transaction.event.TransactionalEventListener;
 
 import javax.inject.Inject;
+import java.util.Objects;
 import java.util.UUID;
 
 @Component("bakeries_TechCardChangedListener")
 public class TechCardChangedListener {
     @Inject
     private DataManager dataManager;
-    private static Logger log = LoggerFactory.getLogger(TechCardChangedListener.class);
+    private static final Logger log = LoggerFactory.getLogger(TechCardChangedListener.class);
 
 
     @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
@@ -27,7 +28,11 @@ public class TechCardChangedListener {
 
         if (event.getType() == EntityChangedEvent.Type.UPDATED) {
             log.info(event.getChanges().getOldValue("name"));
-            ReadyMeal readyMeal = dataManager.load(ReadyMeal.class).query("select e from bakeries_ReadyMeal e where e.name=:name").parameter("name", event.getChanges().getOldValue("name")).view("readyMeal-view").one();
+            ReadyMeal readyMeal = dataManager.load(ReadyMeal.class)
+                    .query("select e from bakeries_ReadyMeal e where e.name=:name")
+                    .parameter("name", Objects.requireNonNull(event.getChanges().getOldValue("name")))
+                    .view("readyMeal-view")
+                    .one();
             readyMeal.setName(techCard.getName());
             readyMeal.setBakery(techCard.getBakery());
             log.info(readyMeal.getName() + " снова дебажим");
