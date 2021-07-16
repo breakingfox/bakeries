@@ -30,12 +30,14 @@ public class ReadyMealServiceBean implements ReadyMealService {
         for (String x : names) {
             if (!nameList.contains(x)) {
                 isReadyToCook = false;
+                break;
             }
         }
         if (isReadyToCook) {
             for (Component comp : components) {
                 if (comp.getAmount() < AMOUNT_SUBTRACTION * amountOfProduct) {
                     isReadyToCook = false;
+                    break;
                 }
             }
         }
